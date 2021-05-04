@@ -1,4 +1,4 @@
 <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-  <app-character *ngFor="let character of characters" [character]="character" (onDisplayCharacter)="displayCharacterHandler($event)"></app-character>
+  <app-character *ngFor="let character of characters" [character]="character"></app-character>
 </div>
-<app-character-detail *ngIf="displayCharacter" [character]="character" (onToggle)="displayCharacterHandler(null)"></app-character-detail>
+<app-character-detail *ngIf="displayCharacter"></app-character-detail>
