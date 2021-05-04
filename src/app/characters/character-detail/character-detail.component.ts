@@ -6,8 +6,30 @@ import { Character } from '../interfaces/character.interface';
   templateUrl: './character-detail.component.html'
 })
 export class CharacterDetailComponent {
-  @Input() character: Character;
-  @Input() displayCharacter: boolean = false;
+
+  bulletComonClass = 'w-2 h-2 max-w-2 max-h-2 rounded-full mr-1 ';
+
+  @Input() character: Character = {
+    id: null,
+    name: '',
+    status: '',
+    species: '',
+    type: '',
+    gender: '',
+    origin: {
+      name: '',
+      url: '',
+    },
+    location: {
+      name: '',
+      url: '',
+    },
+    image: '',
+    episode: [],
+    url: '',
+    created: '',
+    episodes: []
+  };
   @Output() onToggle: EventEmitter<null> = new EventEmitter();
 
   toggleHandler(): void {

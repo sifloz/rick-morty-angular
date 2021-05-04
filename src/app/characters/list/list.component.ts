@@ -625,6 +625,10 @@ export class ListComponent {
       }
   ];
   displayCharacterHandler = (characterId: number | null = null): void => {
+    if (characterId) {
+      const characterIndex = this.characters.findIndex(item => item.id === characterId)
+      this.character = this.characters[characterIndex] || null
+    }
     this.displayCharacter = characterId ? true : false
   }
 }

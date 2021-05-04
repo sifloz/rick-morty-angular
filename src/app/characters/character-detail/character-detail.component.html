@@ -5,32 +5,84 @@
     <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
       <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
         <div class="sm:flex sm:items-start">
-          <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-            <!-- Heroicon name: outline/exclamation -->
-            <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-            </svg>
-          </div>
-          <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-              Deactivate account
-            </h3>
-            <div class="mt-2">
-              <p class="text-sm text-gray-500">
-                Are you sure you want to deactivate your account? All of your data will be permanently removed. This action cannot be undone.
-              </p>
+          <div class="flex flex-col items-center bg-white rounded-xl max-h-screen">
+            <div class="flex flex-col items-start w-full p-0">
+              <div class="flex flex-row items-center w-full py-6 px-5">
+                <div class="flex flex-row justify-center items-center w-32 max-w-32 h-32 max-h-32 p-2 mr-5">
+                  <img class="rounded-full" src="{{ character.image }}" alt="Character" />
+                </div>
+                <div class="flex flex-col justify-center items-center">
+                  <div class="flex flex-col w-full items-start p-0">
+                    <div class="font-bold text-xl text-gray-900">
+                      {{ character.name }}
+                    </div>
+                  </div>
+                  <div class="flex flex-row w-full justify-center items-start p-0">
+                    <div class="text-base w-full font-16 text-gray-700 capitalize ">
+                      {{ character.species }}
+                    </div>
+                  </div>
+                  <div class="flex flex-row w-full items-center p-0">
+                    <div class="flex flex-row items-center p-0 mr-4">
+                      <div [className]="[character.status.toLowerCase() === 'alive' ? bulletComonClass + 'bg-morty-500' : character.status.toLowerCase() === 'dead' ? bulletComonClass + 'bg-red-500' : bulletComonClass + 'bg-gray-500']"></div>
+                      <div class="text-sm text-gray-500 capitalize group-hover:text-gray-600">
+                        {{ character.status }}
+                      </div>
+                    </div>
+                    <div class="flex flex-row items-center p-0">
+                      <div [className]="[character.gender.toLowerCase() === 'male' ? bulletComonClass + 'bg-blue-500' : character.gender.toLowerCase() === 'female' ? bulletComonClass + 'bg-pink-500' : character.gender.toLowerCase() === 'genderless' ? bulletComonClass + 'bg-yellow-500' : bulletComonClass + 'bg-gray-500']"></div>
+                      <div class="text-sm text-gray-500 capitalize group-hover:text-gray-600">
+                        {{ character.gender }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-col items-start w-full p-0">
+              <div class="flex flex-col w-full items-start p-0">
+                <div class="flex flex-row items-start w-full py-0 px-7">
+                  <div class="grid grid-cols-2 gap-6 w-full">
+                    <div class="flex flex-col items-start p-0">
+                      <div class="font-bold text-gray-900">Origin</div>
+                      <div class="text-base text-gray-600 capitalize">{{ character.origin.name }}</div>
+                    </div>
+                    <div class="flex flex-col items-start p-0">
+                      <div class="font-bold text-gray-900">Location</div>
+                      <div class="text-base text-gray-600 capitalize ">{{ character.location.name }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col items-start w-full pt-6 px-7 pb-2">
+                <div class="flex flex-row items-start text-gray-900 py-2 mb-2 px-0">
+                  Episodes ({{ character.episode.length }})
+                </div>
+                <ul *ngIf="character.episodes && character.episodes.length > 0" class="flex flex-col w-full max-h-72 overflow-y-scroll">
+                  <li *ngFor="let episode of character.episodes" class="flex flex-row py-3 px-4 rounded-lg bg-gray-200 mb-4">
+                    <p class="text-gray-700 truncate">
+                      {{ episode.episode }} - {{ episode.name }}
+                    </p>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-        <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm" (click)="toggleHandler()">
+      <div className="bg-white px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+        <button type="button" className="mt-3 w-full inline-flex justify-center rounded-md border border-blue-400 shadow-sm px-4 py-2 bg-white text-base font-medium text-blue-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" (click)="toggleHandler()">
+          OK
+        </button>
+      </div>
+      <!-- <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+        <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm" >
           Deactivate
         </button>
         <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" (click)="toggleHandler()">
           Cancel
-        </button>
-      </div>
+        </button> 
+      </div>-->
     </div>
   </div>
 </div>
