@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core'
 import { Character } from '../interfaces/character.interface';
 
@@ -5,6 +6,7 @@ import { Character } from '../interfaces/character.interface';
 @Injectable()
 export class CharactersService {
 
+  private _baseURL:string = 'https://rickandmortyapi.com/api';
   private _displayCharacter: boolean = false;
   private _character: Character;
   private _characters: Character[] = [
@@ -637,13 +639,21 @@ export class CharactersService {
     return displayCharacterValue;
   }
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   displayCharacterHandler = (characterId: number | null = null): void => {
     if (characterId) {
       const characterIndex = this.characters.findIndex(item => item.id === characterId)
       this._character = this.characters[characterIndex] || null
     }
+    
+    let characterEpisodes = this._character.episode.map(item => item.slice(item.lastIndexOf('/')+1, item.length))
+
+    this.http.get(this._baseURL+'/episode/'+characterEpisodes)
+      .subscribe((resp: any) => {
+        this._character.episodes = resp.id ? [resp] : resp
+      });
+
     this._displayCharacter = characterId ? true : false
   }
 

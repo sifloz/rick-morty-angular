@@ -8,18 +8,6 @@ import { CharactersService } from '../services/characters.service';
 })
 export class ListComponent {
 
-  // characters: Character[] = [];
-  
-  // get character(): Character {
-  //   return this.charactersService.character
-  // }
-  // get characters(): Character[] {
-  //   return this.charactersService.characters
-  // }
-  // get displayCharacter(): boolean {
-  //   return this.charactersService.displayCharacter
-  // }
-
   get character(): Character {
     return this.charactersService.character;
   }

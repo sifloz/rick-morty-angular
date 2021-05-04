@@ -1,4 +1,4 @@
-<div class="group flex flex-col justify-start items-center px-5 py-6 bg-white rounded-xl h-full hover:shadow-xl cursor-pointer transition delay-50 duration-300 ease-in-out" (click)="selectCharacterHandler()">
+<div class="group flex flex-col justify-start items-center px-5 py-6 bg-white rounded-xl h-full hover:shadow-xl cursor-pointer transition delay-50 duration-300 ease-in-out animate__animated animate__fadeIn" (click)="selectCharacterHandler()">
   <div [className]="[character.gender.toLocaleLowerCase() === 'male' ? borderCommonClass + ' border-blue-500' : character.gender.toLowerCase() === 'female' ? borderCommonClass + ' border-pink-500' : character.gender.toLowerCase() === 'genderless' ? borderCommonClass + ' border-yellow-500' : borderCommonClass + ' border-gray-500']">
     <img class="w-24 h-24 max-w-24 max-h-24 rounded-full" src={{character.image}} alt="{{character.name}}" />
   </div>
