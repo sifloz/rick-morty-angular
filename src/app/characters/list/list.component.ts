@@ -6,6 +6,8 @@ import { Character } from '../interfaces/character.interface';
   templateUrl: './list.component.html'
 })
 export class ListComponent {
+  displayCharacter: boolean = false;
+  character: Character;
   characters: Character[] = [
     {
       "id": 1,
@@ -621,5 +623,8 @@ export class ListComponent {
       "url": "https://rickandmortyapi.com/api/character/20",
       "created": "2017-11-04T22:34:53.659Z"
       }
-  ]
+  ];
+  displayCharacterHandler = (characterId: number | null = null): void => {
+    this.displayCharacter = characterId ? true : false
+  }
 }
