@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Character } from '../interfaces/character.interface';
 import { CharactersService } from '../services/characters.service';
 
@@ -6,7 +6,11 @@ import { CharactersService } from '../services/characters.service';
   selector: 'app-character-list',
   templateUrl: './list.component.html'
 })
-export class ListComponent {
+export class ListComponent implements OnInit {
+
+  ngOnInit() {
+    this.charactersService.fetchCharactersHandler()
+  }
 
   get character(): Character {
     return this.charactersService.character;
